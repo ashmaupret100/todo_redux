@@ -15,7 +15,6 @@ export const Todoslice = createSlice({
       const newText = { text: action.payload.text };
       state.push(newText);
     },
-    delete: (state) => {},
   },
 });
 
