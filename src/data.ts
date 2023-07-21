@@ -1,11 +1,13 @@
+import todo from "./todo";
+
 export const todoData = [
   {
     id: 0,
-    todo: "dochores",
+    todo: "do chores",
   },
   {
     id: 1,
-    todo: "doch",
+    todo: "wash dishes",
   },
   {
     id: 2,

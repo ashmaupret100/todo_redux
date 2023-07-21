@@ -1,0 +1,14 @@
+.wrapper {
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input {
+  margin: 10px;
+}
+.del-button {
+  background-color: red;
+  color: ;
+}
