@@ -1,35 +1,79 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+
+import { useSelector, useDispatch } from "react-redux";
+import { AddTodo, DeleteTodo, UpdateTodo } from "./todo";
+// const [editTodo, setEditTodo] = useState(false);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [eachtodo, setEachTodo] = useState("");
+  const [changetodo, setChangetodo] = useState("");
+  const dispatch = useDispatch();
+  const todoList = useSelector((state) => state.todo.value);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="wrapper">
+        <h1>Todo app</h1>
+        <div className="flex flex-col items-center">
+          <input
+            className="input"
+            type="text"
+            placeholder="Enter todo"
+            onChange={(e) => {
+              setEachTodo(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              dispatch(
+                AddTodo({
+                  id: todoList[todoList.length - 1].id + 1,
+                  todo: eachtodo,
+                })
+              );
+            }}>
+            Add Task
+          </button>
+          {/* <button
+            className="bg-white h-10 border-2 border-gray-600 hover:bg-white text-black font-bold py-2 px-4 rounded-lg"
+            onClick={editTodo ? () => HandleUpdate(edit) : Addtask}>
+            {editTodo ? "Update" : "Add To Do"}
+          </button> */}
+        </div>
+        <div>
+          {todoList.map((each) => {
+            return (
+              <div key={each.id}>
+                <span>{each.todo}</span>
+                <input
+                  type="text"
+                  placeholder="Edit todo"
+                  onChange={(e) => {
+                    setChangetodo(e.target.value);
+                  }}
+                />
+
+                <button
+                  className="del-button"
+                  onClick={() => {
+                    dispatch(DeleteTodo({ id: each.id }));
+                  }}>
+                  Delete
+                </button>
+                <button
+                  onClick={() => {
+                    dispatch(UpdateTodo({ id: each.id, todo: changetodo }));
+                  }}>
+                  Edit{" "}
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
