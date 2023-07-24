@@ -3,22 +3,22 @@ import todo from "./todo";
 export const todoData = [
   {
     id: 0,
-    todo: "do chores",
+    todo: "Do chores ",
   },
   {
     id: 1,
-    todo: "wash dishes",
+    todo: "Wash dishes ",
   },
   {
     id: 2,
-    todo: "d watch movie",
+    todo: "Watch movie ",
   },
   {
     id: 3,
-    todo: "do laundry",
+    todo: "Do laundry ",
   },
   {
     id: 4,
-    todo: "water plant",
+    todo: "Water plant ",
   },
 ];

@@ -3,6 +3,7 @@ import "./App.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { AddTodo, DeleteTodo, UpdateTodo } from "./todo";
+import Modal from "./components/modal";
 // const [editTodo, setEditTodo] = useState(false);
 
 function App() {
@@ -10,10 +11,11 @@ function App() {
   const [changetodo, setChangetodo] = useState("");
   const dispatch = useDispatch();
   const todoList = useSelector((state) => state.todo.value);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
-      <div className="wrapper">
+      <div className="wrapper ">
         <h1>Todo app</h1>
         <div className="flex flex-col items-center">
           <input
@@ -25,6 +27,7 @@ function App() {
             }}
           />
           <button
+            className="button add-button"
             onClick={() => {
               dispatch(
                 AddTodo({
@@ -45,8 +48,9 @@ function App() {
           {todoList.map((each) => {
             return (
               <div key={each.id}>
-                <span>{each.todo}</span>
+                <span className="todo-item">{each.todo}</span>
                 <input
+                  className="input"
                   type="text"
                   placeholder="Edit todo"
                   onChange={(e) => {
@@ -55,22 +59,27 @@ function App() {
                 />
 
                 <button
-                  className="del-button"
+                  className=" button del-button"
                   onClick={() => {
                     dispatch(DeleteTodo({ id: each.id }));
                   }}>
                   Delete
                 </button>
                 <button
+                  className=" button edit-button"
                   onClick={() => {
                     dispatch(UpdateTodo({ id: each.id, todo: changetodo }));
                   }}>
-                  Edit{" "}
+                  {/* onClick={() => {
+                    setOpenModal(true);
+                  }}> */}
+                  Edit
                 </button>
               </div>
             );
           })}
         </div>
+        {/* {openModal && <Modal />} */}
       </div>
     </>
   );
