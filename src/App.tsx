@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <div className="wrapper ">
-        <h1>Todo app</h1>
+        <h1>Todo App</h1>
         <div className="flex flex-col items-center">
           <input
             className="input"
